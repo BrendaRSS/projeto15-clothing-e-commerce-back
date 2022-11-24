@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import joi from "joi";
-import authRoutes from "./routes/authRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
 
 //configs
 const app = express();
@@ -17,7 +17,7 @@ export const userSchema = joi.object({
     email: joi.string().email({ minDomainSegments: 2, tlds: { allow: ["com", "br"]}}).required(),
     password: joi.string().min(4).required(),
     confirm_password: joi.ref("password"),
-    cpf: joi.number().min(11).max(11).required(),
+    cpf: joi.string().min(11).max(11).required(),
     birth_year: joi.number().integer().min(1900).max(2008).required(),
 })
 

@@ -5,7 +5,7 @@ import {collectionUsers} from "../database/db.js";
 export async function validationSignUpMeddleware(req, res, next){
     const bodyUser = req.body;
 
-    const userExist = await collectionUsers.findOne({email: body.email});
+    const userExist = await collectionUsers.findOne({email: bodyUser.email});
     if(userExist){
         return res.status(409).send({ message: "Usuário já cadastrado!" });
     }
