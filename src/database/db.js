@@ -16,3 +16,4 @@ try{
 const db = mongoClient.db("DbEcommerce");
 export const collectionUsers = db.collection("users");
 export const collectionSessions = db.collection("sessions");
+export const collectionCategories = db.collection("categories");

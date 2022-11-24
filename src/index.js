@@ -3,12 +3,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import joi from "joi";
 import authRoutes from "./routes/authRoutes.js";
+import productsRoutes from "./routes/productsRoutes.js";
 
 //configs
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(authRoutes);
+app.use(productsRoutes);
 dotenv.config();
 
 //validações joi
@@ -19,6 +21,10 @@ export const userSchema = joi.object({
     confirm_password: joi.ref("password"),
     cpf: joi.string().min(11).max(11).required(),
     birth_year: joi.number().integer().min(1900).max(2008).required(),
+})
+
+export const categorySchema = joi.object({
+    category: joi.string().min(4).required()
 })
 
 const port = process.env.PORT || 5000;
