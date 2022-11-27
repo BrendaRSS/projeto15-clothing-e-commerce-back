@@ -1,4 +1,4 @@
-import { categorySchema } from "../index.js";
+import { categorySchema } from '../schema/category.schema.js';
 import { collectionCategories } from "../database/db.js";
 
 export async function validationCategoryMdd(req, res, next){
