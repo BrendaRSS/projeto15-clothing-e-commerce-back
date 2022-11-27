@@ -10,7 +10,8 @@ export async function validationSignInMeddleware(req, res, next) {
     }
 
     const passwordOK = bcrypt.compareSync(password, userExist.password);
-    if(!password){
+    
+    if(!passwordOK){
         return res.status(401).send("Senha incorreta!")
     }
 

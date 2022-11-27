@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import {userSchema} from "../index.js";
+import { userSchema } from '../schema/user.schema.js';
 import {collectionUsers} from "../database/db.js";
 
 export async function validationSignUpMeddleware(req, res, next){
