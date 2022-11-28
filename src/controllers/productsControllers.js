@@ -21,17 +21,6 @@ export async function getCategories(req, res) {
         console.log(error);
     };
 }
-    export async function getOneProduct(req, res) {
-    const productId = new ObjectId(req.params.id);
-
-    try {
-        const productData = await collectionInventory.findOne({ _id: productId })
-        return res.status(200).send(productData);
-    } catch (e) {
-        console.error(e);
-        return res.sendStatus(500);
-    }
-}
 
 export async function getInventory(req, res){
     const categoria = req.headers.categoria;
