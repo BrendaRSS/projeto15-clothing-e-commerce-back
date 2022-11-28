@@ -24,8 +24,31 @@ export async function getCategories(req, res) {
 
 export async function getInventory(req, res){
     const categoria = req.headers.categoria;
+    const cart = req.headers.cart;
+    const {category} = req.query;
 
     try{
+        // if(cart){
+        //     const inventory = await collectionInventory.find().toArray();
+        //     const array = [];
+        //     console.log(cart[0]._id)
+        //     for(let i=0; i<cart.length; i++){
+        //         inventory.forEach((produto)=>{
+        //             if(cart[i]._id === produto._id){
+        //                 console.log(produto) ;
+        //             }
+        //     })
+        //     }
+        //     return res.status(200).send(array);
+        // }
+
+        if(category){
+            const products = await collectionInventory.
+            find({ category: { $regex: category, $options: "i" } }).toArray();
+        
+            return res.status(200).send(products);
+        }
+        
         const inventory = await collectionInventory.find({category: categoria}).toArray();
         return res.status(200).send(inventory);
     }catch(error){
