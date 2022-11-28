@@ -1,4 +1,4 @@
-import {collectionCategories} from "../database/db.js";
+import {collectionCategories, collectionInventory} from "../database/db.js";
 
 export async function postCategories(req, res){
     const body = req.body;
@@ -17,6 +17,18 @@ export async function getCategories(req, res){
         const hallCategories = await collectionCategories.find().toArray();
         return res.status(200).send(hallCategories);
     } catch(error){
+        console.log(error);
+        return res.sendStatus(500);
+    }
+}
+
+export async function getInventory(req, res){
+    const categoria = req.headers.categoria;
+
+    try{
+        const inventory = await collectionInventory.find({category: categoria}).toArray();
+        return res.status(200).send(inventory);
+    }catch(error){
         console.log(error);
         return res.sendStatus(500);
     }
